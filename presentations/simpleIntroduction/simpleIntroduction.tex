@@ -183,9 +183,39 @@ Rodrigo Siqueira Jordão
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}{Law of Demeter}{Real code}
+\begin{frame}[fragile]{Law of Demeter}{Real code}
+\small
+\begin{lstlisting}
+...
+def execute(pElementFile, pLine)
+  attributeElement = @language.attributeHandler.get_attribute(pLine)
+  if attributeElement
+    lastIndex = pElementFile.classes.length - 1
+    attributeElement.each do |attribute|
+      attribute.comments = @language.string_comment_to_transfer
+    end
+    @language.string_comment_to_transfer = ''
+    pElementFile.classes[lastIndex].add_attribute(attributeElement)
+  end
+...
+\end{lstlisting}
 \end{frame}
 
+\begin{frame}[fragile]{Law of Demeter}{Apply LoD}
+\small
+\begin{lstlisting}
+...
+class FileElementData < Languages::BasicData
+...
+ def add_attribute_to_last_class(pAttributeElement)
+  classes.last.add_attribute(pAttributeElement)
+ end
+...
+end
+\end{lstlisting}
+\end{frame}
+
+%-------------------------------------------------------
 \begin{frame}{Law of Demeter}{Singleton and Law of Demeter}
 \end{frame}
 
