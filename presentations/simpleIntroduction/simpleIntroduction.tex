@@ -32,6 +32,7 @@
 \usepackage{setspace}
 \usepackage{color}
 \usepackage{listings}
+\usepackage{lstlinebgrd}
 
 % Specify table cell length
 \usepackage{array}
@@ -51,6 +52,7 @@
 %-------------------------------------------------------
 % Configure syntax highlight
 %-------------------------------------------------------
+\definecolor{codepurple}{rgb}{0,0.6,0}
 \lstset{
   backgroundcolor=\color{white},
   breaklines=true,
@@ -58,7 +60,7 @@
   extendedchars=true,
   frame=single,
   keepspaces=true,
-  keywordstyle=\color{blue},
+  keywordstyle=\color{magenta},
   language=Ruby,
   numbers=left,
   numbersep=10pt,
@@ -142,7 +144,14 @@ Rodrigo Siqueira Jordão
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}{Introduction}{History}
+\begin{frame}{Introduction}{About our logo}
+  \begin{figure}[overview]
+    \includegraphics[width=0.68\textwidth]{images/2.jpg}
+  \end{figure}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}{Introduction}{Curiosity}
 
   \begin{columns}
   \begin{column}{0.4\textwidth}
@@ -160,12 +169,6 @@ Rodrigo Siqueira Jordão
 
 \end{frame}
 
-%-------------------------------------------------------
-\begin{frame}{Introduction}{About our logo}
-  \begin{figure}[overview]
-    \includegraphics[width=0.68\textwidth]{images/2.jpg}
-  \end{figure}
-\end{frame}
 
 %-------------------------------------------------------
 \begin{frame}{Introduction}{About our organization}
@@ -295,9 +298,9 @@ class XptoClass{
   \end{figure}
 \end{frame}
 
-\begin{frame}{Architecture}{Strategy - GoF pattern}
+\begin{frame}{Architecture}{Template - GoF pattern}
   \begin{figure}[stategof]
-    \includegraphics[width=0.9\textwidth]{images/strategy.png}
+    \includegraphics[width=0.9\textwidth]{images/template.png}
   \end{figure}
 \end{frame}
 
@@ -314,7 +317,8 @@ class XptoClass{
 \end{frame}
 
 \begin{frame}[fragile]{Simple Code}{Demonstration}
-Code from: lib/kuniri/language/ruby/class\_ruby.rb
+Code from:
+\verb|lib/kuniri/language/ruby/class_ruby.rb|
 \small
 \begin{lstlisting}
 ...
@@ -369,9 +373,10 @@ class ClassRuby < Languages::Class
 \end{frame}
 
 \begin{frame}[fragile]{Simple Code}{Demonstration}
-Code from: lib/kuniri/state\_machine/OO\_structured\_fsm/class\_state.rb
+Code from:
+\verb|lib/kuniri/state_machine/OO_structured_fsm/class_state.rb|
 \small
-\begin{lstlisting}
+\begin{lstlisting}[language=Ruby, caption=Class State]
 ...
 class ClassState < OOStructuredState
   @language
@@ -414,9 +419,29 @@ objects:
   \end{figure}
 \end{frame}
 
+\begin{frame}{Architecture}{Law of Demeter}
+  \begin{figure}[Look at class structure]
+    \includegraphics[width=0.8\textwidth]{images/demeter_1.png}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Architecture}{Law of Demeter}
+  \begin{figure}[Look at class structure]
+    \includegraphics[width=0.8\textwidth]{images/demeter_2.png}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Architecture}{Law of Demeter}
+  \begin{figure}[Look at class structure]
+    \includegraphics[width=0.8\textwidth]{images/demeter_3.png}
+  \end{figure}
+\end{frame}
+
+
 %-------------------------------------------------------
 \begin{frame}[fragile]{Law of Demeter}{Real code}
-Code from: lib/kuniri/state\_machine/OO\_structured\_fsm/class\_state.rb
+Code from:
+\verb|lib/kuniri/state_machine/OO_structured_fsm/class_state.rb|
 \small
 \begin{lstlisting}
 ...
@@ -436,7 +461,7 @@ def execute(pElementFile, pLine)
 
 \begin{frame}[fragile]{Law of Demeter}{Apply LoD}
 Code from:
-lib/kuniri/language/container\_data/structured\_and\_oo/
+\verb|lib/kuniri/language/container_data/structured_and_oo/|
 \small
 \begin{lstlisting}
 ...
@@ -451,7 +476,8 @@ end
 \end{frame}
 
 \begin{frame}[fragile]{Law of Demeter}{Real code}
-Code from: lib/kuniri/state\_machine/OO\_structured\_fsm/class\_state.rb
+Code from:
+\verb|lib/kuniri/state_machine/OO_structured_fsm/class_state.rb|
 \small
 \begin{lstlisting}
 ...
@@ -470,7 +496,8 @@ def execute(pElementFile, pLine)
 \end{frame}
 
 \begin{frame}[fragile]{Law of Demeter}{Next part}
-Code from: lib/kuniri/state\_machine/OO\_structured\_fsm/class\_state.rb
+Code from:
+\verb|lib/kuniri/state_machine/OO_structured_fsm/class_state.rb|
 \small
 \begin{lstlisting}
 ...
@@ -482,7 +509,8 @@ def execute(pElementFile, pLine)
 \end{frame}
 
 \begin{frame}[fragile]{Law of Demeter}{Next part}
-Code from: lib/kuniri/language/language.rb
+Code from:
+\verb|lib/kuniri/language/language.rb|
 \small
 \begin{lstlisting}
 ...
@@ -494,7 +522,8 @@ end
 \end{frame}
 
 \begin{frame}[fragile]{Law of Demeter}{Next part}
-Code from: lib/kuniri/state\_machine/OO\_structured\_fsm/class\_state.rb
+Code from:
+\verb|lib/kuniri/state_machine/OO_structured_fsm/class_state.rb|
 \small
 \begin{lstlisting}
 ...
@@ -531,7 +560,8 @@ sys 0m0.227s
 
 \begin{frame}[fragile]{Law of Demeter}{Change it}
 \small
-Code from: lib/kuniri/language/language.rb
+Code from:
+\verb|lib/kuniri/language/language.rb|
 \begin{lstlisting}
 ...
 def line_inspect(pTarget, pLine)
@@ -581,8 +611,92 @@ sys 0m0.230s
     \end{columns}
 \end{frame}
 
-\begin{frame}{Law of Demeter}{Fluid interfaces}
+\begin{frame}[fragile]{Law of Demeter}{Fluent interface and Law of Demeter}
+  \begin{block}{Fluent interface}
+    The biggest difference in building fluent interfaces is the change
+      of using setters. Instead of constructing setters without any return type,
+      those setters (or other mutations) will return an object that is most
+      likely to be needed next in your code.
+  \end{block}
+Exemplo
+\small
+\begin{lstlisting}
+product.setWeight(100)
+        .setHeight(30)
+        .setLength(60)
+        .setPrice(10)
+...
+def setWeight(int weight)
+  @weight = weight;
+  return self
+end
+\end{lstlisting}
+
 \end{frame}
+
+\begin{frame}{Law of Demeter}{Fluent interface and Law of Demeter}
+  \begin{itemize}
+    \item Rigibility: modularity, maintainability.
+    \item Fragility: flexibility, reusability.
+    \item Immobility: reusability, understandability.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Law of Demeter}{Fluent interface and LoD - Rigidity}
+  \begin{columns}[T]
+      \begin{column}{.5\textwidth}
+    Fluent interface
+    \begin{itemize}
+      \item Not enforces information hiding. The flow of the method is predetermined.
+    \end{itemize}
+      \end{column}
+       \hfill
+      \begin{column}{.5\textwidth}
+    Law of Demeter
+        \begin{itemize}
+      \item Enforces information localization and information hiding.
+      \item Emphasis on modularity.
+    \end{itemize}
+      \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Law of Demeter}{Fluent interface and LoD - Fagility}
+  \begin{columns}[T]
+      \begin{column}{.5\textwidth}
+    Fluent interface
+    \begin{itemize}
+      \item If you change a return type a method you can break another part.
+    \end{itemize}
+      \end{column}
+       \hfill
+      \begin{column}{.5\textwidth}
+    Law of Demeter
+        \begin{itemize}
+      \item Methods not depend on each other.
+    \end{itemize}
+      \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Law of Demeter}{Fluent interface and LoD - Immobility}
+  \begin{columns}[T]
+      \begin{column}{.5\textwidth}
+    Fluent interface
+    \begin{itemize}
+      \item The API is primarily designed to be readable and to flow.
+    \end{itemize}
+      \end{column}
+       \hfill
+      \begin{column}{.5\textwidth}
+    Law of Demeter
+        \begin{itemize}
+      \item Not simple as Fluent interface (readable)
+    \end{itemize}
+      \end{column}
+    \end{columns}
+\end{frame}
+
 
 %=======================================================
 \section{Running kuniri and output}
